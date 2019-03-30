@@ -26,6 +26,8 @@
   <modules>
     <module>leaf-common</module>
     <module>leaf-api</module>
+    <module>leaf-domain</module>
+    <module>leaf-service</module>
   </modules>
 
   <dependencyManagement>
