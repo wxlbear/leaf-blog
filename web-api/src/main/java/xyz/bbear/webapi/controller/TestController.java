@@ -7,14 +7,14 @@ package xyz.bbear.webapi.controller;
  */
 public class TestController {
 
-    private String camerTest;
+  private String camerTest;
 
-    /**
-     * test.
-     *
-     * @param name name
-     */
-    public void test(String name) {
-        System.out.println(camerTest);
-    }
+  /**
+   * test.
+   *
+   * @param name name
+   */
+  public void test(String name) {
+    System.out.println(camerTest);
+  }
 }
