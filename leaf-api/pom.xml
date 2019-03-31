@@ -37,7 +37,7 @@
 
         <dependency>
             <groupId>xyz.bbear</groupId>
-            <artifactId>leaf-domain</artifactId>
+            <artifactId>leaf-service</artifactId>
         </dependency>
 
         <dependency>
