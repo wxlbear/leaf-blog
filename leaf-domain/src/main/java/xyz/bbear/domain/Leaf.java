@@ -10,4 +10,9 @@ import lombok.Data;
  */
 @Data
 @TableName("leaf")
-public class Leaf extends BaseModel<Leaf> {}
+public class Leaf extends BaseModel<Leaf> {
+
+  private String name;
+  private Integer age;
+  private String email;
+}
