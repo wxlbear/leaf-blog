@@ -42,6 +42,16 @@
         <artifactId>leaf-api</artifactId>
         <version>${leaf.version}</version>
       </dependency>
+      <dependency>
+        <groupId>xyz.bbear</groupId>
+        <artifactId>leaf-domain</artifactId>
+        <version>${leaf.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>xyz.bbear</groupId>
+        <artifactId>leaf-service</artifactId>
+        <version>${leaf.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
