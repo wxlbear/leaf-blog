@@ -1,34 +1,5 @@
 server:
   port: 8080
-mybatis:
-  mapper-locations: classpath*:/mapper/**/**Mapper.xml
-
-spring:
-  datasource:
-    driver-class-name: com.mysql.cj.jdbc.Driver
-  jackson:
-    deserialization:
-      fail-on-unknown-properties: false
-    property-naming-strategy: SNAKE_CASE
-  data:
-    mybatis:
-      repositories:
-        snowflake:
-          enabled: true
-          datacenter-id: 0
-          worker-id: 0
-  cloud:
-    gateway:
-      discovery:
-        locator:
-          enabled: true
-          url-expression: "'http://' + serviceId"
-    kubernetes:
-      discovery:
-        filter: "metadata.labels['discovery']"
-
-service:
-  discovery: true
 
 ---
 spring:
@@ -38,16 +9,38 @@ spring:
 spring:
   profiles: testing
   datasource:
-#    schema: classpath:db/init_table.sql
+    schema: classpath:db/schema-h2.sql
     password: 123456
     driver-class-name: org.h2.Driver
-    url: jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;INIT=RUNSCRIPT FROM 'classpath:db/schema-h2.sql'\\;RUNSCRIPT FROM 'classpath:db/data-h2.sql'
+    url: jdbc:h2:mem:px
     username: root
+
 
 logging:
   level:
     xyz:
       bbear: debug
+
+jetcache:
+  statIntervalMinutes: 15
+  areaInCacheName: false
+  local:
+    default:
+      type: linkedhashmap
+      keyConvertor: fastjson
+      limit: 100
+  remote:
+    default:
+      type: redis
+      keyConvertor: fastjson
+      valueEncoder: java
+      valueDecoder: java
+      poolConfig:
+        minIdle: 5
+        maxIdle: 20
+        maxTotal: 50
+      host: localhost
+      port: 6379
 
 ---
 spring:
