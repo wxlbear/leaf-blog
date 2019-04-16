@@ -16,7 +16,7 @@ public class Picture extends BaseModel<Picture> {
   private String path;
 
   /** 图片名称. */
-  private String fileName;
+  private String name;
 
   /** 图片宽度. */
   private Integer width;

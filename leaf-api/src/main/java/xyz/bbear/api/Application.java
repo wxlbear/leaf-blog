@@ -2,9 +2,11 @@ package xyz.bbear.api;
 
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.alicp.jetcache.anno.config.EnableMethodCache;
+import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 
 /**
  * Application.
@@ -18,5 +20,16 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class Application {
   public static void main(String[] args) {
     SpringApplication.run(Application.class, args);
+  }
+
+  /**
+   * mybatis-plus 分页插件.
+   *
+   * @return PaginationInterceptor
+   */
+  @Bean
+  public PaginationInterceptor paginationInterceptor() {
+    PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
+    return paginationInterceptor;
   }
 }
