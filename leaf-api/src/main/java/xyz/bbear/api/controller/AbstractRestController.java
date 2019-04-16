@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import xyz.bbear.api.model.ApiResult;
 import xyz.bbear.common.enums.StatusEnum;
@@ -35,7 +36,7 @@ public abstract class AbstractRestController<T extends BaseModel, S extends ISer
    * @return ApiResult
    */
   @PostMapping
-  public ApiResult create(T t) {
+  public ApiResult create(@RequestBody T t) {
     t.setCreatedAt(new Date());
     t.setUpdatedAt(new Date());
     t.setStatus(StatusEnum.active.code);
@@ -50,7 +51,7 @@ public abstract class AbstractRestController<T extends BaseModel, S extends ISer
    * @return ApiResult
    */
   @PutMapping
-  public ApiResult update(T t) {
+  public ApiResult update(@RequestBody T t) {
     t.setUpdatedAt(new Date());
     service.updateById(t);
     return new ApiResult();
