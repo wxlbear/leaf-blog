@@ -23,7 +23,7 @@ import xyz.bbear.domain.BaseModel;
  */
 public abstract class AbstractRestController<T extends BaseModel, S extends IService<T>> {
 
-  private S service;
+  protected S service;
 
   public AbstractRestController(S service) {
     this.service = service;
@@ -95,7 +95,6 @@ public abstract class AbstractRestController<T extends BaseModel, S extends ISer
       @RequestParam(defaultValue = "10") int size,
       T param) {
     Page<T> pager = new Page<>(page, size);
-
     QueryWrapper<T> queryWrapper = new QueryWrapper<>(param);
     return ApiResult.resultWith(this.service.page(pager, queryWrapper));
   }

@@ -2,6 +2,8 @@ package xyz.bbear.api;
 
 import com.alicp.jetcache.anno.config.EnableCreateCacheAnnotation;
 import com.alicp.jetcache.anno.config.EnableMethodCache;
+import com.baomidou.mybatisplus.core.injector.ISqlInjector;
+import com.baomidou.mybatisplus.extension.injector.LogicSqlInjector;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
@@ -31,5 +33,15 @@ public class Application {
   public PaginationInterceptor paginationInterceptor() {
     PaginationInterceptor paginationInterceptor = new PaginationInterceptor();
     return paginationInterceptor;
+  }
+
+  /**
+   * logic delete plugin.
+   *
+   * @return ISqlInjector
+   */
+  @Bean
+  public ISqlInjector sqlInjector() {
+    return new LogicSqlInjector();
   }
 }

@@ -14,6 +14,10 @@ spring:
     driver-class-name: org.h2.Driver
     url: jdbc:h2:mem:px
     username: root
+  jackson:
+    deserialization:
+      fail-on-unknown-properties: false
+    property-naming-strategy: SNAKE_CASE
 
 
 logging:

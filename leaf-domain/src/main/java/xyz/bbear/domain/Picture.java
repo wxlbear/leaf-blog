@@ -1,5 +1,7 @@
 package xyz.bbear.domain;
 
+import com.baomidou.mybatisplus.annotation.SqlCondition;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
 
@@ -13,9 +15,11 @@ import lombok.Data;
 public class Picture extends BaseModel<Picture> {
 
   /** picture path. */
+  @TableField(value = "path", condition = SqlCondition.LIKE)
   private String path;
 
   /** 图片名称. */
+  @TableField(value = "name", condition = SqlCondition.LIKE)
   private String name;
 
   /** 图片宽度. */
@@ -25,5 +29,6 @@ public class Picture extends BaseModel<Picture> {
   private Integer height;
 
   /** 图片描述. */
+  @TableField(value = "description", condition = SqlCondition.LIKE)
   private String description;
 }
