@@ -8,6 +8,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
 import xyz.bbear.common.enums.StatusEnum;
+import xyz.bbear.domain.Picture;
 import xyz.bbear.domain.Story;
 import xyz.bbear.infra.config.TestConfig;
 
@@ -30,5 +31,15 @@ public class CommonTestBase {
     story.setCreatedAt(new Date());
     story.setStatus(StatusEnum.active.code);
     return story;
+  }
+
+  protected Picture mockPicture() {
+    Picture mock = new Picture();
+    mock.setName(UUID.randomUUID().toString().substring(10));
+    mock.setFormat("jpg");
+    mock.setUpdatedAt(new Date());
+    mock.setCreatedAt(new Date());
+    mock.setStatus(StatusEnum.active.code);
+    return mock;
   }
 }

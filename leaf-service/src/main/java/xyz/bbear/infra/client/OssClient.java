@@ -40,4 +40,9 @@ public class OssClient {
     ossClient.shutdown();
     return null;
   }
+
+  public void remove(String objectName) {
+    OSSClient ossClient = new OSSClient(END_POINT, OSS_KEY, OSS_SECRET);
+    ossClient.deleteObject(BUCKET_NAME, objectName);
+  }
 }
