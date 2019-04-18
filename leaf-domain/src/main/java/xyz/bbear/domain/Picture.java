@@ -20,6 +20,9 @@ public class Picture extends BaseModel<Picture> {
   @TableField(value = "name", condition = SqlCondition.LIKE)
   private String name;
 
+  /** ossName. */
+  private String ossName;
+
   /** 图片格式. */
   private String format;
 

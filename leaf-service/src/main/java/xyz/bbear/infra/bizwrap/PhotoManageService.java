@@ -20,18 +20,12 @@ public class PhotoManageService {
 
   @Autowired private PictureService pictureService;
 
-  /** 上次图片到，并且新增一条记录. */
+  /** 上传图片到oss，并且db新增一条记录. */
   @Transactional
   public void upload(Picture picture, InputStream picStream) throws Exception {
     this.pictureService.save(picture);
-    String path = String.format("test/%s.%s", picture.getName(), picture.getFormat());
+    String path =
+        String.format("%s/%s.%s", picture.getPath(), picture.getOssName(), picture.getFormat());
     this.ossClient.upload(path, picStream);
-  }
-
-  /** 删除oss上的图片，并且logic删除一条记录. */
-  @Transactional
-  public void delete(long id, String objectName) {
-    this.pictureService.removeById(id);
-    this.ossClient.remove(objectName);
   }
 }

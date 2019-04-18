@@ -5,6 +5,7 @@ import com.aliyun.oss.model.BucketReferer;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 /**
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Component;
  *
  * @author xiongliu wu 2019-04-16 18:45
  */
+@Slf4j
 @Component
 public class OssClient {
 
@@ -29,15 +31,21 @@ public class OssClient {
    * @throws Exception upload exception
    */
   public String upload(String path, InputStream fin) throws Exception {
-    OSSClient ossClient = new OSSClient(END_POINT, OSS_KEY, OSS_SECRET);
+
     List<String> refererList = new ArrayList<>();
     refererList.add("https://*.console.aliyun.com");
-    BucketReferer br = new BucketReferer(false, refererList);
+    refererList.add("http://bbear.xyz");
+    refererList.add("http://oss-cn-beijing.aliyuncs.com");
+    refererList.add("https://oss-cn-beijing.aliyuncs.com");
+
+    OSSClient ossClient = new OSSClient(END_POINT, OSS_KEY, OSS_SECRET);
+    BucketReferer br = new BucketReferer(true, refererList);
     ossClient.setBucketReferer(BUCKET_NAME, br);
 
     ossClient.putObject(BUCKET_NAME, path, fin);
 
     ossClient.shutdown();
+    log.debug("url -> {}", END_POINT + "/" + path);
     return null;
   }
 
