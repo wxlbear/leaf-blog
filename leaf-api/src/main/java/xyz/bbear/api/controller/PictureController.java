@@ -1,10 +1,10 @@
 package xyz.bbear.api.controller;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import xyz.bbear.api.model.ApiResult;
 import xyz.bbear.domain.Picture;
 import xyz.bbear.infra.service.PictureService;
 
@@ -22,10 +22,10 @@ public class PictureController extends AbstractRestController<Picture, PictureSe
   }
 
   @Override
-  public ApiResult pager(
+  public IPage<Picture> pager(
       @RequestParam(defaultValue = "1") int page,
       @RequestParam(defaultValue = "10") int size,
       Picture param) {
-    return ApiResult.resultWith(this.service.pager(new Page<>(page, size), param));
+    return this.service.pager(new Page<>(page, size), param);
   }
 }

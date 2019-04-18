@@ -1,10 +1,12 @@
 package xyz.bbear.api.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import java.io.Serializable;
 import java.util.Date;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,7 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
-import xyz.bbear.api.model.ApiResult;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import xyz.bbear.common.enums.StatusEnum;
 import xyz.bbear.domain.BaseModel;
 
@@ -33,52 +35,49 @@ public abstract class AbstractRestController<T extends BaseModel, S extends ISer
    * create.
    *
    * @param t t
-   * @return ApiResult
    */
   @PostMapping
-  public ApiResult create(@RequestBody T t) {
+  @ResponseStatus(HttpStatus.CREATED)
+  public void create(@RequestBody T t) {
     t.setCreatedAt(new Date());
     t.setUpdatedAt(new Date());
     t.setStatus(StatusEnum.active.code);
     service.save(t);
-    return new ApiResult();
   }
 
   /**
    * update.
    *
    * @param t t
-   * @return ApiResult
    */
   @PutMapping
-  public ApiResult update(@RequestBody T t) {
+  @ResponseStatus(HttpStatus.CREATED)
+  public void update(@RequestBody T t) {
     t.setUpdatedAt(new Date());
     service.updateById(t);
-    return new ApiResult();
   }
 
   /**
    * delete.
    *
    * @param id id
-   * @return ApiResult
    */
   @DeleteMapping("/{id}")
-  public ApiResult delete(@PathVariable Serializable id) {
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void delete(@PathVariable Serializable id) {
     service.removeById(id);
-    return new ApiResult();
   }
 
   /**
    * get.
    *
    * @param id id
-   * @return ApiResult
+   * @return T t
    */
   @GetMapping("/{id}")
-  public ApiResult get(@PathVariable Serializable id) {
-    T entity = service.getById(id);
-    return ApiResult.resultWith(entity);
+  @ResponseStatus(HttpStatus.OK)
+  public T get(@PathVariable Serializable id) {
+    return service.getById(id);
   }
 
   /**
@@ -87,15 +86,16 @@ public abstract class AbstractRestController<T extends BaseModel, S extends ISer
    * @param page page
    * @param size size
    * @param param param
-   * @return ApiResult
+   * @return IPage
    */
   @GetMapping("/pager")
-  public ApiResult pager(
+  @ResponseStatus(HttpStatus.OK)
+  public IPage<T> pager(
       @RequestParam(defaultValue = "1") int page,
       @RequestParam(defaultValue = "10") int size,
       T param) {
     Page<T> pager = new Page<>(page, size);
     QueryWrapper<T> queryWrapper = new QueryWrapper<>(param);
-    return ApiResult.resultWith(this.service.page(pager, queryWrapper));
+    return this.service.page(pager, queryWrapper);
   }
 }
