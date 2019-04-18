@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.SqlCondition;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.Data;
+import lombok.experimental.Accessors;
 
 /**
  * Story.
@@ -12,6 +13,7 @@ import lombok.Data;
  */
 @Data
 @TableName("story")
+@Accessors(chain = true)
 public class Story extends BaseModel<Story> {
 
   /** title. */
