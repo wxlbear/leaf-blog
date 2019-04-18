@@ -44,3 +44,15 @@ CREATE TABLE picture
 	status INT(50) NULL DEFAULT NULL COMMENT '状态',
 	PRIMARY KEY (id)
 )ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8;
+
+
+CREATE TABLE story
+(
+	id BIGINT(20) NOT NULL COMMENT '主键ID',
+	title VARCHAR(100) NULL DEFAULT NULL COMMENT 'title',
+	content TEXT NULL DEFAULT NULL COMMENT 'content',
+	created_at DATETIME  NULL COMMENT 'created_time',
+	updated_at DATETIME  NULL COMMENT 'updated_time',
+	status INT(2)  NULL COMMENT 'status',
+	PRIMARY KEY (id)
+);
