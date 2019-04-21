@@ -14,7 +14,7 @@ import xyz.bbear.infra.service.PictureService;
  * @author xiongliu wu 2019-03-31 20:18
  */
 @RestController
-@RequestMapping("/picture")
+@RequestMapping("/pictures")
 public class PictureController extends AbstractRestController<Picture, PictureService> {
 
   public PictureController(PictureService service) {

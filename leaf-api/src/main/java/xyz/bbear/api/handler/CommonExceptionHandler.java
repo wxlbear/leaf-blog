@@ -27,6 +27,7 @@ public class CommonExceptionHandler {
   public ExceptionResponse handleException(HttpServletResponse response, Exception e) {
     log.error(e.getMessage(), e);
     response.setStatus(500);
+    e.printStackTrace();
     return ExceptionResponse.resultWith(500, e.getMessage(), "050500");
   }
 
@@ -41,6 +42,7 @@ public class CommonExceptionHandler {
   public ExceptionResponse handleCommonException(HttpServletResponse response, CommonException e) {
     log.error(e.getMessage(), e);
     response.setStatus(e.status);
+    e.printStackTrace();
     return ExceptionResponse.resultWith(e.status, e.errorCode);
   }
 }
