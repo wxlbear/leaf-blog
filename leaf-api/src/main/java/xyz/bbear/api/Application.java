@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 /**
- * Application.
+ * Application api.
  *
  * @author xiongliu wu 2019-03-30 22:07
  */
