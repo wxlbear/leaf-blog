@@ -1,9 +1,5 @@
 language: java
 
-maven:
-  version: 3.6.0
-  config: settings.xml
-
 cache:
   directories:
     - $HOME/.m2
@@ -12,6 +8,7 @@ env:
   - SERVER_IP_ADDRESS=118.24.64.174
 
 script:
+  - cp .travis.settings.xml $HOME/.m2/settings.xml
   - mvn clean package docker:build -Dmaven.test.skip=true
 
 #before_install:
