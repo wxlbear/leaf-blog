@@ -5,10 +5,14 @@ maven:
   config: settings.xml
 
 cache:
-  - $HOME/.m2
+  directories:
+    - $HOME/.m2
 
 env:
   - SERVER_IP_ADDRESS=118.24.64.174
+
+script:
+  - mvn clean package docker:build -Dmaven.test.skip=true
 
 #before_install:
 #  - openssl aes-256-cbc -K $encrypted_de5bf714eee4_key -iv $encrypted_de5bf714eee4_iv
@@ -20,7 +24,6 @@ env:
 #  - ssh -i ./deploy_key root@118.24.64.174 pwd
 
 after_success:
-  - mvn clean package docker:build -Dmaven.test.skip=true
   - openssl aes-256-cbc -K $encrypted_de5bf714eee4_key -iv $encrypted_de5bf714eee4_iv
     -in deploy_key.enc -out ./deploy_key -d
   - eval "$(ssh-agent -s)"
