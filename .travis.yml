@@ -7,9 +7,10 @@ cache:
 env:
   - SERVER_IP_ADDRESS=118.24.64.174
 
+install: true
+
 script:
   - cp .travis.settings.xml $HOME/.m2/settings.xml
-  - mvn install
   - cd leaf-api && mvn clean package docker:build
 
 #before_install:
