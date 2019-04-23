@@ -4,6 +4,9 @@ cache:
   directories:
     - $HOME/.m2/repository
 
+services:
+  - docker
+
 env:
   - SERVER_IP_ADDRESS=118.24.64.174
 
