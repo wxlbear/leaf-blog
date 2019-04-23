@@ -1,5 +1,9 @@
 language: java
 
+maven:
+  version: 3.6.0
+  config: settings.xml
+
 env:
   - SERVER_IP_ADDRESS=118.24.64.174
 
