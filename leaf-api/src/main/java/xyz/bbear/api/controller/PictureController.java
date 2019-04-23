@@ -2,6 +2,7 @@ package xyz.bbear.api.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,5 +28,10 @@ public class PictureController extends AbstractRestController<Picture, PictureSe
       @RequestParam(defaultValue = "10") int size,
       Picture param) {
     return this.service.pager(new Page<>(page, size), param);
+  }
+
+  @GetMapping("echo")
+  public String echo(@RequestParam(required = false) String echo) {
+    return echo;
   }
 }

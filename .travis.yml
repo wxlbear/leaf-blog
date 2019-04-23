@@ -1,1 +1,19 @@
 language: java
+
+env:
+  - SERVER_IP_ADDRESS=118.24.64.174
+
+before_install:
+  - openssl aes-256-cbc -K $encrypted_de5bf714eee4_key -iv $encrypted_de5bf714eee4_iv
+    -in deploy_key.enc -out ./deploy_key -d
+  - eval "$(ssh-agent -s)"
+    - chmod 600 ./deploy_key
+    - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
+    - ssh-add ./deploy_key
+    - ssh -i ./deploy_key root@118.24.64.174 pwd
+
+
+after_success:
+  - docker rm leaf-api -f
+  - docker run --name leaf-api -p 8080:8080 -d leaf/leaf-api
+  - docker rmi $(docker images -f "dangling=true" -q)
