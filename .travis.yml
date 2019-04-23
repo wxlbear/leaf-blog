@@ -9,7 +9,7 @@ env:
 
 script:
   - cp .travis.settings.xml $HOME/.m2/settings.xml
-  - mvn clean package docker:build -Dmaven.test.skip=true
+  - mvn clean package docker:build
 
 #before_install:
 #  - openssl aes-256-cbc -K $encrypted_de5bf714eee4_key -iv $encrypted_de5bf714eee4_iv
