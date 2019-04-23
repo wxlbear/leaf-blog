@@ -12,6 +12,8 @@ env:
 #  - ssh-add ./deploy_key
 #  - ssh -i ./deploy_key root@118.24.64.174 pwd
 
+script:
+  - mvn clean package docker:build
 
 after_success:
   - openssl aes-256-cbc -K $encrypted_de5bf714eee4_key -iv $encrypted_de5bf714eee4_iv
