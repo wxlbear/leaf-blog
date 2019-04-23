@@ -20,8 +20,5 @@ after_success:
   - chmod 600 ./deploy_key
   - echo -e "Host $SERVER_IP_ADDRESS\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - ssh-add ./deploy_key
-  - ssh -i ./deploy_key root@118.24.64.174
-  - docker rm leaf-api -f
-  - docker run --name leaf-api -p 8080:8080 -d leaf/leaf-api
-  - docker rmi $(docker images -f "dangling=true" -q)
+  - ssh -i ./deploy_key root@118.24.64.174 'docker rm leaf-api -f ; docker run --name leaf-api -p 8080:8080 -d leaf/leaf-api ; docker rmi $(docker images -f "dangling=true" -q)'
   - exit
