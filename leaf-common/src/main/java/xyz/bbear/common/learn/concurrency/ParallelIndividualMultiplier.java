@@ -34,6 +34,11 @@ public class ParallelIndividualMultiplier {
     return result;
   }
 
+  /**
+   * wait.
+   *
+   * @param threads threads
+   */
   public static void wait(List<Thread> threads) {
     threads.forEach(
         item -> {
