@@ -49,9 +49,9 @@ public class PacketCodec {
 
         // 跳过版本号
         byteBuf.skipBytes(1);
-
+        // get serialize algorithm
         byte serializeAlgorithm = byteBuf.readByte();
-
+        // get command
         byte command = byteBuf.readByte();
 
         // 数据包长度
@@ -69,11 +69,21 @@ public class PacketCodec {
         return null;
     }
 
+    /**
+     * get serializer.
+     * @param serializeAlgorithm serializeAlgorithm
+     * @return Serializer
+     */
     private static Serializer getSerializer(byte serializeAlgorithm) {
 
         return serializerMap.get(serializeAlgorithm);
     }
 
+    /**
+     * get Packet type.
+     * @param command command
+     * @return
+     */
     private static Class<? extends Packet> getRequestType(byte command) {
 
         return packetTypeMap.get(command);
