@@ -28,6 +28,7 @@
     <module>leaf-api</module>
     <module>leaf-domain</module>
     <module>leaf-service</module>
+    <module>leaf-crawler</module>
   </modules>
 
   <dependencyManagement>
