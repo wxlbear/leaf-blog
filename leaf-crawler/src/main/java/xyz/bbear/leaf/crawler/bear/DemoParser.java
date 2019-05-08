@@ -9,7 +9,7 @@ public class DemoParser implements Parser {
 
   @Override
   public Result parse(Response response) {
-      System.out.println("parser.....");
+    System.out.println("parser.....");
     return null;
   }
 }

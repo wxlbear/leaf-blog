@@ -11,14 +11,13 @@ import lombok.ToString;
 @Data
 @ToString
 public class Request {
-    private String method;
-    private String url;
+  private String method;
+  private String url;
 
-    public Request() {
-    }
+  public Request() {}
 
-    public Request(String method, String url) {
-        this.method = method;
-        this.url = url;
-    }
+  public Request(String method, String url) {
+    this.method = method;
+    this.url = url;
+  }
 }

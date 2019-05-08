@@ -12,8 +12,8 @@ public class SerialMultiplier {
   /**
    * 两个矩阵A[m][n] B[n][p] 相乘得到 C[m][p].
    *
-   * @param matrixA
-   * @param matrixB
+   * @param matrixA matrixA
+   * @param matrixB matrixB
    */
   public static double[][] multiply(double[][] matrixA, double[][] matrixB) {
     int aRows = matrixA.length;

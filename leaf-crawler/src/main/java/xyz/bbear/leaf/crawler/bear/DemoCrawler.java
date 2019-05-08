@@ -16,6 +16,6 @@ public class DemoCrawler extends Crawler {
 
   @Override
   protected void addNewRequests(Response response) {
-      this.requests.add(new Request("get","http://www.baidu.com"));
+    this.requests.add(new Request("get", "http://www.baidu.com"));
   }
 }

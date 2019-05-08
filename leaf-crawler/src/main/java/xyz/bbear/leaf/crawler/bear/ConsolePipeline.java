@@ -9,6 +9,6 @@ public class ConsolePipeline implements Pipeline {
 
   @Override
   public void pipeline(Result result) {
-      System.out.println("pipeline result: " + result);
+    System.out.println("pipeline result: " + result);
   }
 }

@@ -1,6 +1,5 @@
 package xyz.bbear.leaf.crawler.bear;
 
-import java.util.concurrent.BlockingDeque;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
@@ -20,7 +19,6 @@ public class CrawlerRunner {
   public CrawlerRunner(int threadNum, Crawler crawler) {
     this.threadNum = threadNum;
     this.crawler = crawler;
-
   }
 
   public static CrawlerRunner create(int threadNum, Crawler crawler) {
@@ -42,16 +40,12 @@ public class CrawlerRunner {
 
   public static void main(String[] args) throws InterruptedException {
     LinkedBlockingDeque<Request> requests = new LinkedBlockingDeque<>();
-    requests.add(new Request("get","seed"));
+    requests.add(new Request("get", "seed"));
     CrawlerRunner runner =
         CrawlerRunner.create(
-            10,
-            new DemoCrawler(requests,
-                DEFAULT_DOWNLOADER,
-                new DemoParser(),
-                DEFAULT_PIPELINE));
+            10, new DemoCrawler(requests, DEFAULT_DOWNLOADER, new DemoParser(), DEFAULT_PIPELINE));
     runner.start();
     Thread.sleep(5000);
-//    runner.stop();
+    //    runner.stop();
   }
 }

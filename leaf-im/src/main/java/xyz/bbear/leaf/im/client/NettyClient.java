@@ -1,7 +1,6 @@
 package xyz.bbear.leaf.im.client;
 
 import java.nio.charset.Charset;
-import java.util.Date;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.buffer.ByteBuf;
@@ -10,8 +9,7 @@ import io.netty.channel.ChannelInitializer;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringEncoder;
-import xyz.bbear.leaf.im.handler.FirstClientHandler;
+import xyz.bbear.leaf.im.handler.ClientHandler;
 
 /**
  * NettyClient.
@@ -28,19 +26,19 @@ public class NettyClient {
                 .handler(new ChannelInitializer<SocketChannel>() {
                     @Override
                     protected void initChannel(SocketChannel ch){
-                        ch.pipeline().addLast(new FirstClientHandler());
+                        ch.pipeline().addLast(new ClientHandler());
                     }
                 });
 
         Channel channel = bootstrap.connect("127.0.0.1", 8000).channel();
-        while (true){
-            System.out.println("*****");
-            ByteBuf buffer = channel.alloc().buffer();
-            byte[] bytes = "你好，闪电侠！".getBytes(Charset.forName("utf-8"));
-            buffer.writeBytes(bytes);
-            channel.writeAndFlush(buffer);
-            Thread.sleep(2000);
-        }
+//        while (true){
+//            System.out.println("*****");
+//            ByteBuf buffer = channel.alloc().buffer();
+//            byte[] bytes = "你好，闪电侠！".getBytes(Charset.forName("utf-8"));
+//            buffer.writeBytes(bytes);
+//            channel.writeAndFlush(buffer);
+//            Thread.sleep(2000);
+//        }
     }
 
     public static void main(String[] args) throws InterruptedException {

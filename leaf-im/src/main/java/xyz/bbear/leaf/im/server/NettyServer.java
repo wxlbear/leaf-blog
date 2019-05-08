@@ -1,14 +1,11 @@
 package xyz.bbear.leaf.im.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInitializer;
-import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import io.netty.handler.codec.string.StringDecoder;
-import xyz.bbear.leaf.im.handler.FirstServerHandler;
+import xyz.bbear.leaf.im.handler.ServerHandler;
 
 /**
  * NettyServer.
@@ -27,7 +24,7 @@ public class NettyServer {
                 .channel(NioServerSocketChannel.class)
                 .childHandler(new ChannelInitializer<NioSocketChannel>() {
                     protected void initChannel(NioSocketChannel channel){
-                        channel.pipeline().addLast(new FirstServerHandler());
+                        channel.pipeline().addLast(new ServerHandler());
 //                        channel.pipeline().addLast(new StringDecoder());
 //                        channel.pipeline().addLast(new SimpleChannelInboundHandler<String>() {
 //                            @Override

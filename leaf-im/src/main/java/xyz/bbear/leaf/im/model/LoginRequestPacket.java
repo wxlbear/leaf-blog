@@ -10,14 +10,23 @@ import lombok.Data;
 @Data
 public class LoginRequestPacket extends Packet {
 
-    private Integer userId;
+    /**
+     * 用户id.
+     */
+    private String userId;
 
+    /**
+     * username.
+     */
     private String username;
 
+    /**
+     * password.
+     */
     private String password;
 
     @Override
     public Byte getCommand() {
-        return Command.LOGIN_REQUEST;
+        return CommandEnum.LOGIN_REQUEST.code;
     }
 }

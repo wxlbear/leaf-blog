@@ -1,7 +1,6 @@
 package xyz.bbear.leaf.im.model;
 
 import java.nio.charset.Charset;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -17,13 +16,9 @@ public class PacketCodec {
 
     private static final int MAGIC_NUMBER = 0x12345678;
 
-    private static final Map<Byte, Class<? extends Packet>> packetTypeMap;
     private static final Map<Byte, Serializer> serializerMap;
 
     static {
-        packetTypeMap = new HashMap<>();
-        packetTypeMap.put(Command.LOGIN_REQUEST, LoginRequestPacket.class);
-
         serializerMap = new HashMap<>();
         Serializer serializer = new JSONSerializer();
         serializerMap.put(serializer.getSerializerAlgorithm(), serializer);
@@ -85,8 +80,7 @@ public class PacketCodec {
      * @return
      */
     private static Class<? extends Packet> getRequestType(byte command) {
-
-        return packetTypeMap.get(command);
+        return CommandEnum.typeMap().get(command);
     }
 
 
@@ -98,7 +92,7 @@ public class PacketCodec {
         LoginRequestPacket loginRequestPacket = new LoginRequestPacket();
         loginRequestPacket.setUsername("wuxiongliu");
         loginRequestPacket.setPassword("12345");
-        loginRequestPacket.setUserId(111);
+        loginRequestPacket.setUserId("111");
 
 
         ByteBuf encodeByteBuf = encode(loginRequestPacket);
