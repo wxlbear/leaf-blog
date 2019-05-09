@@ -1,7 +1,5 @@
 package xyz.bbear.leaf.crawler.bear;
 
-import java.util.concurrent.BlockingDeque;
-
 /**
  * Crawler.
  *
@@ -47,16 +45,16 @@ public abstract class Crawler implements Runnable {
   }
 
   private void crawler() {
-      Request request = this.scheduler.take();
+      CrawlerRequest request = this.scheduler.take();
       if(request == null){
         return;
       }
-      Response response = this.downloader.download(request);
+      CrawlerResponse response = this.downloader.download(request);
       addNewRequests(response);
       Result result = this.parser.parse(response);
       this.pipeline.pipeline(result);
 
   }
 
-  protected abstract void addNewRequests(Response response);
+  protected abstract void addNewRequests(CrawlerResponse response);
 }

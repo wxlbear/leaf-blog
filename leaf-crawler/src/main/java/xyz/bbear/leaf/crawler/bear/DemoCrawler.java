@@ -1,7 +1,5 @@
 package xyz.bbear.leaf.crawler.bear;
 
-import java.util.concurrent.BlockingDeque;
-
 /**
  * DemoCrawler.
  *
@@ -15,7 +13,7 @@ public class DemoCrawler extends Crawler {
   }
 
   @Override
-  protected void addNewRequests(Response response) {
-    this.scheduler.add(new Request("get", "http://www.baidu.com"));
+  protected void addNewRequests(CrawlerResponse response) {
+    this.scheduler.add(new CrawlerRequest(Method.get, "http://www.baidu.com"));
   }
 }

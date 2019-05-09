@@ -13,10 +13,10 @@ import java.util.concurrent.LinkedBlockingDeque;
 public class NoDuplicateScheduler implements Scheduler {
 
     private ConcurrentMap<String,Boolean> visited = new ConcurrentHashMap<>();
-    private BlockingDeque<Request> requests = new LinkedBlockingDeque<>();
+    private BlockingDeque<CrawlerRequest> requests = new LinkedBlockingDeque<>();
 
     @Override
-    public Request take() {
+    public CrawlerRequest take() {
         try {
             return requests.take();
         } catch (InterruptedException e) {
@@ -26,7 +26,7 @@ public class NoDuplicateScheduler implements Scheduler {
     }
 
     @Override
-    public void add(Request request) {
+    public void add(CrawlerRequest request) {
         Boolean visited = this.visited.get(request.getUrl());
         if(visited == null || !visited){
             this.visited.put(request.getUrl(), true);

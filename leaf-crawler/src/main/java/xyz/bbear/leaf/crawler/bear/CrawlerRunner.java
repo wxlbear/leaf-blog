@@ -2,7 +2,8 @@ package xyz.bbear.leaf.crawler.bear;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-import java.util.concurrent.LinkedBlockingDeque;
+
+import okhttp3.internal.http.HttpMethod;
 
 /**
  * CrawlerRunner.
@@ -40,7 +41,7 @@ public class CrawlerRunner {
 
   public static void main(String[] args) throws InterruptedException {
     Scheduler scheduler = new DuplicateScheduler();
-    scheduler.add(new Request("get", "seed"));
+    scheduler.add(new CrawlerRequest(Method.get, "seed"));
     CrawlerRunner runner =
         CrawlerRunner.create(
             10, new DemoCrawler(scheduler, DEFAULT_DOWNLOADER, new DemoParser(), DEFAULT_PIPELINE));

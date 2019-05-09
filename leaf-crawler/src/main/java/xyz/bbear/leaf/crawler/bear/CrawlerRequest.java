@@ -2,6 +2,7 @@ package xyz.bbear.leaf.crawler.bear;
 
 import lombok.Data;
 import lombok.ToString;
+import okhttp3.internal.http.HttpMethod;
 
 /**
  * Request.
@@ -10,13 +11,13 @@ import lombok.ToString;
  */
 @Data
 @ToString
-public class Request {
-  private String method;
+public class CrawlerRequest {
+  private Method method;
   private String url;
 
-  public Request() {}
+  public CrawlerRequest() {}
 
-  public Request(String method, String url) {
+  public CrawlerRequest(Method method, String url) {
     this.method = method;
     this.url = url;
   }

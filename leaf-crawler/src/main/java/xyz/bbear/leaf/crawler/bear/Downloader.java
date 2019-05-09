@@ -6,5 +6,5 @@ package xyz.bbear.leaf.crawler.bear;
  * @author xiongliu wu 2019-05-08 15:16
  */
 public interface Downloader {
-  Response download(Request request);
+  CrawlerResponse download(CrawlerRequest request);
 }

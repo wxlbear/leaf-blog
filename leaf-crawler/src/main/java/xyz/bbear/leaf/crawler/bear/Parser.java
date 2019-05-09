@@ -7,5 +7,5 @@ package xyz.bbear.leaf.crawler.bear;
  */
 public interface Parser {
 
-  Result parse(Response response);
+  Result parse(CrawlerResponse response);
 }
