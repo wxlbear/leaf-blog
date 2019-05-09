@@ -1,5 +1,7 @@
 package xyz.bbear.leaf.crawler.bear;
 
+import java.util.concurrent.atomic.AtomicLong;
+
 /**
  * Crawler.
  *
@@ -13,6 +15,7 @@ public abstract class Crawler implements Runnable {
   private final Downloader downloader;
   private final Parser parser;
   private final Pipeline pipeline;
+  private AtomicLong counter;
 
   public Crawler(Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
     on();
@@ -35,15 +38,11 @@ public abstract class Crawler implements Runnable {
     while (this.run) {
       System.out.println("running");
       crawler();
-      try {
-        Thread.sleep(1000);
-      } catch (InterruptedException e) {
-        e.printStackTrace();
-      }
     }
   }
 
   private void crawler() {
+    // 使用阻塞的话，可能会导致爬虫停止不了.
     CrawlerRequest request = this.scheduler.take();
     if (request == null) {
       return;
@@ -58,6 +57,7 @@ public abstract class Crawler implements Runnable {
       return;
     }
     this.pipeline.pipeline(result);
+    counter.incrementAndGet();
   }
 
   protected abstract void addNewRequests(CrawlerResponse response);
