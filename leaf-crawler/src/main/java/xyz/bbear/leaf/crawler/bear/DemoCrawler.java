@@ -10,12 +10,12 @@ import java.util.concurrent.BlockingDeque;
 public class DemoCrawler extends Crawler {
 
   public DemoCrawler(
-      BlockingDeque<Request> requests, Downloader downloader, Parser parser, Pipeline pipeline) {
-    super(requests, downloader, parser, pipeline);
+      Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
+    super(scheduler, downloader, parser, pipeline);
   }
 
   @Override
   protected void addNewRequests(Response response) {
-    this.requests.add(new Request("get", "http://www.baidu.com"));
+    this.scheduler.add(new Request("get", "http://www.baidu.com"));
   }
 }

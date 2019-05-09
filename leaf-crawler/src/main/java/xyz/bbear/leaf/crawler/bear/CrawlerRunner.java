@@ -39,13 +39,13 @@ public class CrawlerRunner {
   }
 
   public static void main(String[] args) throws InterruptedException {
-    LinkedBlockingDeque<Request> requests = new LinkedBlockingDeque<>();
-    requests.add(new Request("get", "seed"));
+    Scheduler scheduler = new DuplicateScheduler();
+    scheduler.add(new Request("get", "seed"));
     CrawlerRunner runner =
         CrawlerRunner.create(
-            10, new DemoCrawler(requests, DEFAULT_DOWNLOADER, new DemoParser(), DEFAULT_PIPELINE));
+            10, new DemoCrawler(scheduler, DEFAULT_DOWNLOADER, new DemoParser(), DEFAULT_PIPELINE));
     runner.start();
     Thread.sleep(5000);
-    //    runner.stop();
+    runner.stop();
   }
 }

@@ -11,15 +11,15 @@ public abstract class Crawler implements Runnable {
 
   private volatile boolean run;
 
-  protected final BlockingDeque<Request> requests;
+  protected final Scheduler scheduler;
   private final Downloader downloader;
   private final Parser parser;
   private final Pipeline pipeline;
 
   public Crawler(
-      BlockingDeque<Request> requests, Downloader downloader, Parser parser, Pipeline pipeline) {
+      Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
     on();
-    this.requests = requests;
+    this.scheduler = scheduler;
     this.downloader = downloader;
     this.parser = parser;
     this.pipeline = pipeline;
@@ -47,15 +47,15 @@ public abstract class Crawler implements Runnable {
   }
 
   private void crawler() {
-    try {
-      Request request = this.requests.take();
+      Request request = this.scheduler.take();
+      if(request == null){
+        return;
+      }
       Response response = this.downloader.download(request);
       addNewRequests(response);
       Result result = this.parser.parse(response);
       this.pipeline.pipeline(result);
-    } catch (InterruptedException e) {
-      e.printStackTrace();
-    }
+
   }
 
   protected abstract void addNewRequests(Response response);
