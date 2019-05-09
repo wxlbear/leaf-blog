@@ -12,25 +12,25 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class NoDuplicateScheduler implements Scheduler {
 
-    private ConcurrentMap<String,Boolean> visited = new ConcurrentHashMap<>();
-    private BlockingDeque<CrawlerRequest> requests = new LinkedBlockingDeque<>();
+  private ConcurrentMap<String, Boolean> visited = new ConcurrentHashMap<>();
+  private BlockingDeque<CrawlerRequest> requests = new LinkedBlockingDeque<>();
 
-    @Override
-    public CrawlerRequest take() {
-        try {
-            return requests.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return null;
-        }
+  @Override
+  public CrawlerRequest take() {
+    try {
+      return requests.take();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+      return null;
     }
+  }
 
-    @Override
-    public void add(CrawlerRequest request) {
-        Boolean visited = this.visited.get(request.getUrl());
-        if(visited == null || !visited){
-            this.visited.put(request.getUrl(), true);
-            requests.add(request);
-        }
+  @Override
+  public void add(CrawlerRequest request) {
+    Boolean visited = this.visited.get(request.getUrl());
+    if (visited == null || !visited) {
+      this.visited.put(request.getUrl(), true);
+      requests.add(request);
     }
+  }
 }

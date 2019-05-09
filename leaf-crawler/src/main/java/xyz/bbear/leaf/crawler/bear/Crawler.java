@@ -14,8 +14,7 @@ public abstract class Crawler implements Runnable {
   private final Parser parser;
   private final Pipeline pipeline;
 
-  public Crawler(
-      Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
+  public Crawler(Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
     on();
     this.scheduler = scheduler;
     this.downloader = downloader;
@@ -45,15 +44,20 @@ public abstract class Crawler implements Runnable {
   }
 
   private void crawler() {
-      CrawlerRequest request = this.scheduler.take();
-      if(request == null){
-        return;
-      }
-      CrawlerResponse response = this.downloader.download(request);
-      addNewRequests(response);
-      Result result = this.parser.parse(response);
-      this.pipeline.pipeline(result);
-
+    CrawlerRequest request = this.scheduler.take();
+    if (request == null) {
+      return;
+    }
+    CrawlerResponse response = this.downloader.download(request);
+    if (response == null) {
+      return;
+    }
+    addNewRequests(response);
+    Result result = this.parser.parse(response);
+    if (result == null) {
+      return;
+    }
+    this.pipeline.pipeline(result);
   }
 
   protected abstract void addNewRequests(CrawlerResponse response);

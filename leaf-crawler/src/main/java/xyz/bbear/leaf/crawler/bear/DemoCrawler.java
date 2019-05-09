@@ -7,8 +7,7 @@ package xyz.bbear.leaf.crawler.bear;
  */
 public class DemoCrawler extends Crawler {
 
-  public DemoCrawler(
-      Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
+  public DemoCrawler(Scheduler scheduler, Downloader downloader, Parser parser, Pipeline pipeline) {
     super(scheduler, downloader, parser, pipeline);
   }
 

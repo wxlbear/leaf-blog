@@ -10,20 +10,20 @@ import java.util.concurrent.LinkedBlockingDeque;
  */
 public class DuplicateScheduler implements Scheduler {
 
-    private BlockingDeque<CrawlerRequest> requests = new LinkedBlockingDeque<>();
+  private BlockingDeque<CrawlerRequest> requests = new LinkedBlockingDeque<>();
 
-    @Override
-    public CrawlerRequest take() {
-        try {
-            return requests.take();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return null;
-        }
+  @Override
+  public CrawlerRequest take() {
+    try {
+      return requests.take();
+    } catch (InterruptedException e) {
+      e.printStackTrace();
+      return null;
     }
+  }
 
-    @Override
-    public void add(CrawlerRequest request) {
-        requests.add(request);
-    }
+  @Override
+  public void add(CrawlerRequest request) {
+    requests.add(request);
+  }
 }

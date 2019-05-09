@@ -5,6 +5,7 @@ package xyz.bbear.leaf.crawler.bear;
  *
  * @author xiongliu wu 2019-05-09 13:49
  */
-public enum  ResponseCode {
-    success,error;
+public enum ResponseCode {
+  success,
+  error;
 }

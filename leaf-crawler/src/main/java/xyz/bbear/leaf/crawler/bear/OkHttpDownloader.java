@@ -1,8 +1,8 @@
 package xyz.bbear.leaf.crawler.bear;
 
-import java.io.IOException;
 
 import lombok.extern.slf4j.Slf4j;
+import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -19,19 +19,34 @@ public class OkHttpDownloader implements Downloader {
 
   @Override
   public CrawlerResponse download(CrawlerRequest request) {
-    if(request.getMethod() == Method.get){
-      return get(request.getUrl());
+    if (request.getMethod() == Method.get) {
+      return get(request);
     }
     return null;
   }
 
-  private CrawlerResponse get(String url){
+  private CrawlerResponse get(CrawlerRequest crawlerRequest) {
     CrawlerResponse crawlerResponse = new CrawlerResponse();
     try {
-      Request request = new Request.Builder()
-            .url(url)
-            .build();
+      Request.Builder builder = new Request.Builder();
+      if (crawlerRequest.getHeaders() != null) {
+        builder.headers(crawlerRequest.getHeaders());
+      }
 
+      HttpUrl.Builder urlBuilder = HttpUrl.parse(crawlerRequest.getUrl()).newBuilder();
+
+      if (crawlerRequest.getParam() != null) {
+        crawlerRequest
+            .getParam()
+            .forEach(
+                (k, v) -> {
+                  if (v != null) {
+                    urlBuilder.addQueryParameter(k, v.toString());
+                  }
+                });
+      }
+
+      Request request = builder.url(urlBuilder.build()).build();
       Response response = okHttpClient.newCall(request).execute();
       String body = response.body().string();
       crawlerResponse.setResponseCode(ResponseCode.success);

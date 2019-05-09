@@ -1,5 +1,6 @@
 package xyz.bbear.leaf.crawler.bear;
 
+import java.util.Map;
 import lombok.Data;
 
 /**
@@ -9,6 +10,7 @@ import lombok.Data;
  */
 @Data
 public class CrawlerResponse {
-    private ResponseCode responseCode;
-    private String content;
+  private ResponseCode responseCode;
+  private String content;
+  private Map<String, Object> metaData;
 }

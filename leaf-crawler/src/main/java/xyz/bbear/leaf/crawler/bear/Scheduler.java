@@ -7,6 +7,7 @@ package xyz.bbear.leaf.crawler.bear;
  */
 public interface Scheduler {
 
-    CrawlerRequest take();
-    void add(CrawlerRequest request);
+  CrawlerRequest take();
+
+  void add(CrawlerRequest request);
 }
