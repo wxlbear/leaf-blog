@@ -7,6 +7,8 @@ import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
 import xyz.bbear.leaf.im.model.LoginRequestPacket;
 import xyz.bbear.leaf.im.model.LoginResponsePacket;
+import xyz.bbear.leaf.im.model.MessageRequestPacket;
+import xyz.bbear.leaf.im.model.MessageResponsePacket;
 import xyz.bbear.leaf.im.model.Packet;
 import xyz.bbear.leaf.im.model.PacketCodec;
 
@@ -37,6 +39,15 @@ public class ServerHandler extends ChannelInboundHandlerAdapter {
 
             ByteBuf response = PacketCodec.encode(loginResponsePacket);
             ctx.channel().writeAndFlush(response);
+        } else if(packet instanceof MessageRequestPacket){
+            MessageRequestPacket messageRequestPacket = (MessageRequestPacket) packet;
+
+            String message = messageRequestPacket.getMessage();
+            MessageResponsePacket messageResponsePacket = new MessageResponsePacket();
+
+            System.out.println("server receive message : " + message);
+            messageResponsePacket.setMessage(message);
+            ctx.channel().writeAndFlush(PacketCodec.encode(messageResponsePacket));
         }
 
     }

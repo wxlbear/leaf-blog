@@ -10,7 +10,9 @@ import java.util.Map;
  */
 public enum  CommandEnum {
     LOGIN_REQUEST((byte)1, LoginRequestPacket.class),
-    LOGIN_RESPONSE((byte)2, LoginResponsePacket.class);
+    LOGIN_RESPONSE((byte)2, LoginResponsePacket.class),
+    MESSAGE_REQUEST((byte)3, MessageRequestPacket.class),
+    MESSAGE_RESPONSE((byte)4, MessageResponsePacket.class);
 
     public final Byte code;
     public final Class<? extends Packet> type;
