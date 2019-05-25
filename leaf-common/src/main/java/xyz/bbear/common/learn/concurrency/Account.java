@@ -1,7 +1,5 @@
 package xyz.bbear.common.learn.concurrency;
 
-import java.util.Random;
-
 /**
  * Account.
  *

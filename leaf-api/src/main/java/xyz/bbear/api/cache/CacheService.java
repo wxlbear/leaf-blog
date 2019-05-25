@@ -1,9 +1,10 @@
 package xyz.bbear.api.cache;
 
+import org.springframework.stereotype.Service;
+
 import com.alicp.jetcache.anno.CacheInvalidate;
 import com.alicp.jetcache.anno.CacheType;
 import com.alicp.jetcache.anno.Cached;
-import org.springframework.stereotype.Service;
 
 /**
  * CacheService.

@@ -1,12 +1,14 @@
 package xyz.bbear.infra.config;
 
-import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
-import com.zaxxer.hikari.HikariDataSource;
 import javax.sql.DataSource;
-import org.mybatis.spring.mapper.MapperScannerConfigurer;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+
+import com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean;
+import com.zaxxer.hikari.HikariDataSource;
+import org.mybatis.spring.mapper.MapperScannerConfigurer;
 
 /**
  * TestConfig.

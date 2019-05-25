@@ -2,11 +2,13 @@ package xyz.bbear.infra;
 
 import java.util.Date;
 import java.util.UUID;
-import org.junit.runner.RunWith;
+
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.AnnotationConfigContextLoader;
+
+import org.junit.runner.RunWith;
 import xyz.bbear.common.enums.StatusEnum;
 import xyz.bbear.common.utils.Snowflake;
 import xyz.bbear.domain.Picture;

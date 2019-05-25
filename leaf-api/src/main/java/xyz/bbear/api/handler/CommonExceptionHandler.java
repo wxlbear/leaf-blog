@@ -1,9 +1,11 @@
 package xyz.bbear.api.handler;
 
 import javax.servlet.http.HttpServletResponse;
-import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+import lombok.extern.slf4j.Slf4j;
 import xyz.bbear.api.model.ExceptionResponse;
 import xyz.bbear.common.exceptions.CommonException;
 

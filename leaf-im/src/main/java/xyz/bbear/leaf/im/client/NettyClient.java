@@ -1,6 +1,5 @@
 package xyz.bbear.leaf.im.client;
 
-import java.nio.charset.Charset;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
