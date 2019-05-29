@@ -1,6 +1,5 @@
 package xyz.bbear.leaf.crawler.bear;
 
-
 import lombok.extern.slf4j.Slf4j;
 import okhttp3.HttpUrl;
 import okhttp3.OkHttpClient;

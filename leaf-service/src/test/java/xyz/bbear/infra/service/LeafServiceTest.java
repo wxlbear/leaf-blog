@@ -1,8 +1,7 @@
 package xyz.bbear.infra.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import xyz.bbear.infra.CommonTestBase;
 
 /**

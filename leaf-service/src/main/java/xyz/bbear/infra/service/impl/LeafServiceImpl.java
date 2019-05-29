@@ -1,8 +1,7 @@
 package xyz.bbear.infra.service.impl;
 
-import org.springframework.stereotype.Service;
-
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.springframework.stereotype.Service;
 import xyz.bbear.domain.Leaf;
 import xyz.bbear.infra.mapper.LeafMapper;
 import xyz.bbear.infra.service.LeafService;

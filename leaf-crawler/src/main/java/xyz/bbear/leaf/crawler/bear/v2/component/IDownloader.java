@@ -7,5 +7,5 @@ package xyz.bbear.leaf.crawler.bear.v2.component;
  */
 public interface IDownloader {
 
-    String download(String url);
+  String download(String url);
 }

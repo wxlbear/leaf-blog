@@ -7,7 +7,7 @@ package xyz.bbear.leaf.crawler.bear.v2.component;
  */
 public interface IQueue {
 
-    String take() throws InterruptedException;
+  String take() throws InterruptedException;
 
-    void put(String url) throws InterruptedException;
+  void put(String url) throws InterruptedException;
 }

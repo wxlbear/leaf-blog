@@ -9,8 +9,8 @@ import xyz.bbear.leaf.crawler.bear.v2.component.IParser;
  */
 public class BaiduParser implements IParser {
 
-    @Override
-    public String parse(String content) {
-        return null;
-    }
+  @Override
+  public String parse(String content) {
+    return null;
+  }
 }

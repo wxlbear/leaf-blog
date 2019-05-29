@@ -1,10 +1,8 @@
 package xyz.bbear.infra.bizwrap;
 
 import java.io.InputStream;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
 import org.junit.Test;
+import org.springframework.beans.factory.annotation.Autowired;
 import xyz.bbear.infra.CommonTestBase;
 
 /**

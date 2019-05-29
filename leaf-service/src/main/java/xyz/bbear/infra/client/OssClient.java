@@ -1,14 +1,12 @@
 package xyz.bbear.infra.client;
 
+import com.aliyun.oss.OSSClient;
+import com.aliyun.oss.model.BucketReferer;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-
-import org.springframework.stereotype.Component;
-
-import com.aliyun.oss.OSSClient;
-import com.aliyun.oss.model.BucketReferer;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 /**
  * OssClient.

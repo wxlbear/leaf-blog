@@ -2,7 +2,6 @@ package xyz.bbear.leaf.crawler.bear.v2.component.impl;
 
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
-
 import xyz.bbear.leaf.crawler.bear.v2.component.IQueue;
 
 /**
@@ -12,16 +11,15 @@ import xyz.bbear.leaf.crawler.bear.v2.component.IQueue;
  */
 public class MemoryQueue implements IQueue {
 
-    private BlockingQueue<String> bq = new LinkedBlockingDeque<>();
+  private BlockingQueue<String> bq = new LinkedBlockingDeque<>();
 
+  @Override
+  public String take() throws InterruptedException {
+    return bq.take();
+  }
 
-    @Override
-    public String take() throws InterruptedException {
-        return bq.take();
-    }
-
-    @Override
-    public void put(String url) throws InterruptedException {
-        bq.put(url);
-    }
+  @Override
+  public void put(String url) throws InterruptedException {
+    bq.put(url);
+  }
 }

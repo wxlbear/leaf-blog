@@ -1,7 +1,6 @@
 package xyz.bbear.common.learn.concurrency;
 
 import java.util.Random;
-
 import xyz.bbear.common.utils.ArrayUtils;
 
 /**

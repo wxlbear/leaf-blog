@@ -9,8 +9,8 @@ import xyz.bbear.leaf.crawler.bear.v2.component.IDownloader;
  */
 public class HttpDownloader implements IDownloader {
 
-    @Override
-    public String download(String url) {
-        return null;
-    }
+  @Override
+  public String download(String url) {
+    return null;
+  }
 }
