@@ -1,4 +1,4 @@
-package xyz.bbear.leaf.crawler.bear.v2;
+package xyz.bbear.leaf.crawler.bear.v2.core;
 
 import java.util.List;
 import xyz.bbear.leaf.crawler.bear.v2.component.IDownloader;
@@ -6,6 +6,7 @@ import xyz.bbear.leaf.crawler.bear.v2.component.IParser;
 import xyz.bbear.leaf.crawler.bear.v2.component.IPipeline;
 import xyz.bbear.leaf.crawler.bear.v2.component.IQueue;
 import xyz.bbear.leaf.crawler.bear.v2.component.Page;
+import xyz.bbear.leaf.crawler.bear.v2.model.FieldConfig;
 
 /**
  * Spider.
@@ -14,23 +15,24 @@ import xyz.bbear.leaf.crawler.bear.v2.component.Page;
  */
 public class SpiderWorker extends Thread {
 
-  private final List<String> seedUrls;
   private final IQueue queue;
   private final IDownloader downloader;
   private final IParser parser;
   private final IPipeline pipeline;
+  private final FieldConfig fieldConfig;
 
   public SpiderWorker(
       IQueue queue,
       IDownloader downloader,
       IParser parser,
       IPipeline pipeline,
-      List<String> seedUrls) {
+      List<String> seedUrls,
+      FieldConfig fieldConfig) {
     this.queue = queue;
     this.downloader = downloader;
     this.parser = parser;
     this.pipeline = pipeline;
-    this.seedUrls = seedUrls;
+    this.fieldConfig = fieldConfig;
 
     for (String seedUrl : seedUrls) {
       try {
@@ -53,7 +55,7 @@ public class SpiderWorker extends Thread {
 
         Page page = new Page(queue);
         page.setContent(content);
-        String parsed = parser.parse(page);
+        String parsed = parser.parse(page, fieldConfig);
         pipeline.pipe(parsed);
       } catch (InterruptedException e) {
         quit();

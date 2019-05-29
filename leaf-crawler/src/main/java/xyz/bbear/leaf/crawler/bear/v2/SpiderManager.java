@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import xyz.bbear.leaf.crawler.bear.v2.core.SpiderEngine;
 import xyz.bbear.leaf.crawler.bear.v2.domain.Spider;
 import xyz.bbear.leaf.crawler.bear.v2.domain.SpiderConfig;
 import xyz.bbear.leaf.crawler.bear.v2.service.SpiderConfigService;

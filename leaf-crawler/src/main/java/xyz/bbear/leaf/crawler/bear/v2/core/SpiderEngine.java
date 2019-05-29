@@ -1,5 +1,6 @@
-package xyz.bbear.leaf.crawler.bear.v2;
+package xyz.bbear.leaf.crawler.bear.v2.core;
 
+import com.alibaba.fastjson.JSON;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
@@ -10,6 +11,7 @@ import xyz.bbear.leaf.crawler.bear.v2.component.impl.ConsolePipeline;
 import xyz.bbear.leaf.crawler.bear.v2.component.impl.HttpDownloader;
 import xyz.bbear.leaf.crawler.bear.v2.component.impl.MemoryQueue;
 import xyz.bbear.leaf.crawler.bear.v2.domain.SpiderConfig;
+import xyz.bbear.leaf.crawler.bear.v2.model.FieldConfig;
 
 /**
  * SpiderEngine.
@@ -36,7 +38,8 @@ public class SpiderEngine {
               new HttpDownloader(),
               new BaiduParser(),
               new ConsolePipeline(),
-              spiderConfig.getSeeds());
+              spiderConfig.getSeeds(),
+              JSON.parseObject(spiderConfig.getFieldConfigJson(), FieldConfig.class));
       spider.start();
       spiderList.add(spider);
     }
