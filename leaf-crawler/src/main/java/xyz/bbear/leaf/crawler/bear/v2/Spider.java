@@ -1,8 +1,13 @@
 package xyz.bbear.leaf.crawler.bear.v2;
 
+import java.util.List;
+
+import xyz.bbear.leaf.crawler.bear.Pipeline;
 import xyz.bbear.leaf.crawler.bear.v2.component.IDownloader;
 import xyz.bbear.leaf.crawler.bear.v2.component.IParser;
+import xyz.bbear.leaf.crawler.bear.v2.component.IPipeline;
 import xyz.bbear.leaf.crawler.bear.v2.component.IQueue;
+import xyz.bbear.leaf.crawler.bear.v2.component.Page;
 
 /**
  * Spider.
@@ -11,14 +16,26 @@ import xyz.bbear.leaf.crawler.bear.v2.component.IQueue;
  */
 public class Spider extends Thread {
 
+  private final List<String> seedUrls;
   private final IQueue queue;
   private final IDownloader downloader;
   private final IParser parser;
+  private final IPipeline pipeline;
 
-  public Spider(IQueue queue, IDownloader downloader, IParser parser) {
+  public Spider(IQueue queue, IDownloader downloader, IParser parser, IPipeline pipeline,  List<String> seedUrls) {
     this.queue = queue;
     this.downloader = downloader;
     this.parser = parser;
+    this.pipeline = pipeline;
+    this.seedUrls = seedUrls;
+
+    for (String seedUrl : seedUrls) {
+      try {
+        this.queue.put(seedUrl);
+      } catch (InterruptedException e) {
+        e.printStackTrace();
+      }
+    }
   }
 
   @Override
@@ -26,6 +43,20 @@ public class Spider extends Thread {
 
     while (!Thread.currentThread().isInterrupted()) {
       System.out.println(Thread.currentThread().getName() + ": crawling....");
+
+
+
+      try {
+        String url = queue.take();
+        String content = downloader.download(url);
+
+        Page page = new Page(queue);
+        page.setContent(content);
+        String parsed = parser.parse(page);
+        pipeline.pipe(parsed);
+      } catch (InterruptedException e) {
+        quit();
+      }
     }
   }
 

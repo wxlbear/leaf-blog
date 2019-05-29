@@ -8,4 +8,6 @@ package xyz.bbear.leaf.crawler.bear.v2.component;
 public interface IParser {
 
   String parse(String content);
+
+  String parse(Page page);
 }

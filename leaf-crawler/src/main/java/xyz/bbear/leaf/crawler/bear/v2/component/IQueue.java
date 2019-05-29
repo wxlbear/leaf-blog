@@ -1,5 +1,7 @@
 package xyz.bbear.leaf.crawler.bear.v2.component;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * IQueue.
  *
@@ -8,6 +10,8 @@ package xyz.bbear.leaf.crawler.bear.v2.component;
 public interface IQueue {
 
   String take() throws InterruptedException;
+
+  String take(int timeout, TimeUnit timeUnit) throws InterruptedException;
 
   void put(String url) throws InterruptedException;
 }
