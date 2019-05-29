@@ -2,7 +2,6 @@ package xyz.bbear.leaf.crawler.bear;
 
 import java.io.Serializable;
 import java.util.Map;
-
 import lombok.Data;
 import lombok.ToString;
 import okhttp3.Headers;

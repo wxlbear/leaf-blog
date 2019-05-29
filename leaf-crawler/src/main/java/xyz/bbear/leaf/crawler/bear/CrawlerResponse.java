@@ -1,7 +1,6 @@
 package xyz.bbear.leaf.crawler.bear;
 
 import java.util.Map;
-
 import lombok.Data;
 
 /**
