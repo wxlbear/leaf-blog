@@ -1,7 +1,6 @@
 package xyz.bbear.leaf.crawler.bear.v2;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -10,6 +9,7 @@ import xyz.bbear.leaf.crawler.bear.v2.component.impl.BaiduParser;
 import xyz.bbear.leaf.crawler.bear.v2.component.impl.ConsolePipeline;
 import xyz.bbear.leaf.crawler.bear.v2.component.impl.HttpDownloader;
 import xyz.bbear.leaf.crawler.bear.v2.component.impl.MemoryQueue;
+import xyz.bbear.leaf.crawler.bear.v2.domain.SpiderConfig;
 
 /**
  * SpiderEngine.
@@ -18,18 +18,25 @@ import xyz.bbear.leaf.crawler.bear.v2.component.impl.MemoryQueue;
  */
 public class SpiderEngine {
 
-  private static List<Spider> spiderList = new ArrayList<>();
+  private final SpiderConfig spiderConfig;
 
-  public static void start(int threadNum, List<String> seedUrls) {
+  public SpiderEngine(SpiderConfig spiderConfig) {
+    this.spiderConfig = spiderConfig;
+  }
+
+  private static List<SpiderWorker> spiderList = new ArrayList<>();
+
+  public void start() {
+    int threadNum = spiderConfig.getThreadNum();
     ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
     for (int i = 0; i < threadNum; i++) {
-      Spider spider =
-          new Spider(
+      SpiderWorker spider =
+          new SpiderWorker(
               new MemoryQueue(),
               new HttpDownloader(),
               new BaiduParser(),
               new ConsolePipeline(),
-              seedUrls);
+              spiderConfig.getSeeds());
       spider.start();
       spiderList.add(spider);
     }
@@ -37,15 +44,15 @@ public class SpiderEngine {
     executorService.shutdown();
   }
 
-  public static void stop() {
+  public void stop() {
 
-    for (Spider spider : spiderList) {
+    for (SpiderWorker spider : spiderList) {
       spider.quit();
     }
   }
 
   public static void main(String[] args) throws InterruptedException {
-    start(3, Arrays.asList("http://www.baidu.com"));
+    //    start(3, Arrays.asList("http://www.baidu.com"));
 
     TimeUnit.SECONDS.sleep(3);
     //    stop();

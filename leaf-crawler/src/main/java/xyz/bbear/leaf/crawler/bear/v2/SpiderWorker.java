@@ -12,7 +12,7 @@ import xyz.bbear.leaf.crawler.bear.v2.component.Page;
  *
  * @author xiongliu wu 2019-05-29 16:35
  */
-public class Spider extends Thread {
+public class SpiderWorker extends Thread {
 
   private final List<String> seedUrls;
   private final IQueue queue;
@@ -20,7 +20,7 @@ public class Spider extends Thread {
   private final IParser parser;
   private final IPipeline pipeline;
 
-  public Spider(
+  public SpiderWorker(
       IQueue queue,
       IDownloader downloader,
       IParser parser,

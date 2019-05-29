@@ -5,14 +5,15 @@ import xyz.bbear.leaf.crawler.bear.v2.component.Page;
 import xyz.bbear.leaf.crawler.bear.v2.model.FieldConfig;
 
 /**
- * BaiduParser.
+ * CommonParser.
  *
- * @author xiongliu wu 2019-05-29 16:58
+ * @author xiongliu wu 2019-05-29 19:27
  */
-public class BaiduParser implements IParser {
+public class CommonParser implements IParser {
 
   @Override
   public String parse(Page page, FieldConfig fieldConfig) {
+
     return null;
   }
 }
