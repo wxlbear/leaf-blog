@@ -23,7 +23,13 @@ public class SpiderEngine {
   public static void start(int threadNum, List<String> seedUrls) {
     ExecutorService executorService = Executors.newFixedThreadPool(threadNum);
     for (int i = 0; i < threadNum; i++) {
-      Spider spider = new Spider(new MemoryQueue(), new HttpDownloader(), new BaiduParser(), new ConsolePipeline(), seedUrls);
+      Spider spider =
+          new Spider(
+              new MemoryQueue(),
+              new HttpDownloader(),
+              new BaiduParser(),
+              new ConsolePipeline(),
+              seedUrls);
       spider.start();
       spiderList.add(spider);
     }
@@ -42,6 +48,6 @@ public class SpiderEngine {
     start(3, Arrays.asList("http://www.baidu.com"));
 
     TimeUnit.SECONDS.sleep(3);
-//    stop();
+    //    stop();
   }
 }

@@ -11,7 +11,7 @@ public class HttpDownloader implements IDownloader {
 
   @Override
   public String download(String url) {
-    System.out.println("download:"+ url);
+    System.out.println("download:" + url);
     return url;
   }
 }

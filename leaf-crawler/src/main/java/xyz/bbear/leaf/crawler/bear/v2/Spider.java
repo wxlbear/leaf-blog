@@ -1,8 +1,6 @@
 package xyz.bbear.leaf.crawler.bear.v2;
 
 import java.util.List;
-
-import xyz.bbear.leaf.crawler.bear.Pipeline;
 import xyz.bbear.leaf.crawler.bear.v2.component.IDownloader;
 import xyz.bbear.leaf.crawler.bear.v2.component.IParser;
 import xyz.bbear.leaf.crawler.bear.v2.component.IPipeline;
@@ -22,7 +20,12 @@ public class Spider extends Thread {
   private final IParser parser;
   private final IPipeline pipeline;
 
-  public Spider(IQueue queue, IDownloader downloader, IParser parser, IPipeline pipeline,  List<String> seedUrls) {
+  public Spider(
+      IQueue queue,
+      IDownloader downloader,
+      IParser parser,
+      IPipeline pipeline,
+      List<String> seedUrls) {
     this.queue = queue;
     this.downloader = downloader;
     this.parser = parser;
@@ -43,8 +46,6 @@ public class Spider extends Thread {
 
     while (!Thread.currentThread().isInterrupted()) {
       System.out.println(Thread.currentThread().getName() + ": crawling....");
-
-
 
       try {
         String url = queue.take();

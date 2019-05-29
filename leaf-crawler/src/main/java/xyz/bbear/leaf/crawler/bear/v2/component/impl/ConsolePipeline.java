@@ -9,8 +9,8 @@ import xyz.bbear.leaf.crawler.bear.v2.component.IPipeline;
  */
 public class ConsolePipeline implements IPipeline {
 
-    @Override
-    public void pipe(Object result) {
-        System.out.println("pipe:"+ result);
-    }
+  @Override
+  public void pipe(Object result) {
+    System.out.println("pipe:" + result);
+  }
 }

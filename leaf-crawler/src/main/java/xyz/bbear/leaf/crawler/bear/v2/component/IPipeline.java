@@ -7,5 +7,5 @@ package xyz.bbear.leaf.crawler.bear.v2.component;
  */
 public interface IPipeline {
 
-    void pipe(Object result);
+  void pipe(Object result);
 }

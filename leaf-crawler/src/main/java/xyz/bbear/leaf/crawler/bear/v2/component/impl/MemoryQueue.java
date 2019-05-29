@@ -3,7 +3,6 @@ package xyz.bbear.leaf.crawler.bear.v2.component.impl;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.TimeUnit;
-
 import xyz.bbear.leaf.crawler.bear.v2.component.IQueue;
 
 /**
